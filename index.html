@@ -1,0 +1,433 @@
+
+<!DOCTYPE html>
+<html>
+<head> 
+	<title>Civic Analytics Mapping</title>
+	
+	<meta charset="utf-8" />
+	<link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.css" /> <!-- we will us e this as the styling script for our webmap-->
+	<link rel="stylesheet" href="css/MarkerCluster.css" />
+	<link rel="stylesheet" href="css/MarkerCluster.Default.css" />
+	<link rel="stylesheet" type="text/css" href="css/own_style.css">
+	<link rel="stylesheet" href="css/label.css" />
+	<script src="http://code.jquery.com/jquery-1.11.1.min.js"></script> <!-- this is the javascript file that does the magic-->
+	<script src="js/Autolinker.min.js"></script>
+	<meta name="viewport" content="initial-scale=1.0, user-scalable=no" />
+</head>
+<body>
+	<div id="map"></div> <!-- this is the initial look of the map. in most cases it is done externally using something like a map.css stylesheet were you can specify the look of map elements, like background color tables and so on.-->
+	<script src="http://cdnjs.cloudflare.com/ajax/libs/leaflet/0.7.3/leaflet.js"></script> <!-- this is the javascript file that does the magic-->
+	<script src="js/leaflet-hash.js"></script>
+	<script src="js/label.js"></script>
+	<script src="js/leaflet.markercluster.js"></script>
+	<script src='data/exp_DistanceLabelLayershp.js' ></script>
+	<script src='data/exp_StationLineDistance312015.js' ></script>
+	<script src='data/exp_2040StationSelection312015.js' ></script>
+	<script src='data/exp_QTRMileStationBuffer.js' ></script>
+	<script src='data/exp_1CastrovilleNewBraunfels.js' ></script>
+	<script src='data/exp_2APleasantonAtascosaCounty.js' ></script>
+	<script src='data/exp_2BRockportRRWilsonCounty.js' ></script>
+	<script src='data/exp_3ECommerceSeguin.js' ></script>
+	<script src='data/exp_4ASanPedroUS281.js' ></script>
+	<script src='data/exp_4BMedicalCenterBulverde.js' ></script>
+	<script src='data/exp_5AKerrvilleRRBoerne.js' ></script>
+	<script src='data/exp_5BFredericksburgRdBoerne.js' ></script>
+	<script src='data/exp_6AlamoRanchNewBraunfels.js' ></script>
+	<script src='data/exp_7InnerCityRailLoop.js' ></script>
+	<script>
+		var map = L.map('map', { zoomControl:true }).fitBounds([[29.2124115889,-98.6228682212],[29.5756442659,-98.3360504877]]);
+		var hash = new L.Hash(map); //add hashes to html address to easy share locations
+		var additional_attrib = 'created w. <a href="https://github.com/geolicious/qgis2leaf" target ="_blank">qgis2leaf</a> by <a href="http://www.geolicious.de" target ="_blank">Geolicious</a> & contributors<br>';
+	var feature_group = new L.featureGroup([]);
+
+	var raster_group = new L.LayerGroup([]);
+	
+		var basemap_0 = L.tileLayer('http://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>'});	
+		basemap_0.addTo(map);
+		var basemap_1 = L.tileLayer('http://{s}.tile.openstreetmap.fr/hot/{z}/{x}/{y}.png', { 
+			attribution: additional_attrib + '&copy; <a href="http://openstreetmap.org">OpenStreetMap</a> contributors,<a href="http://creativecommons.org/licenses/by-sa/2.0/">CC-BY-SA</a>, Tiles courtesy of <a href="http://hot.openstreetmap.org/" target="_blank">Humanitarian OpenStreetMap Team</a>'});
+		var basemap_2 = L.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.jpg', { 
+			attribution: additional_attrib + 'Tiles Courtesy of <a href="http://www.mapquest.com/">MapQuest</a> &mdash; Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'});	
+	var layerOrder=new Array();
+	function pop_7InnerCityRailLoop(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+
+
+	}
+						
+	var exp_7InnerCityRailLoopJSON = new L.geoJson(exp_7InnerCityRailLoop,{
+		onEachFeature: pop_7InnerCityRailLoop,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_7InnerCityRailLoopJSON);
+	layerOrder[layerOrder.length] = exp_7InnerCityRailLoopJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+				
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_7InnerCityRailLoopJSON.addTo(map);
+
+	function pop_6AlamoRanchNewBraunfels(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+
+
+	}
+
+	var exp_6AlamoRanchNewBraunfelsJSON = new L.geoJson(exp_6AlamoRanchNewBraunfels,{
+		onEachFeature: pop_6AlamoRanchNewBraunfels,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_6AlamoRanchNewBraunfelsJSON);
+	layerOrder[layerOrder.length] = exp_6AlamoRanchNewBraunfelsJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+				
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_6AlamoRanchNewBraunfelsJSON.addTo(map);
+							
+	function pop_5BFredericksburgRdBoerne(feature, layer) {
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_5BFredericksburgRdBoerneJSON = new L.geoJson(exp_5BFredericksburgRdBoerne,{
+		onEachFeature: pop_5BFredericksburgRdBoerne,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+	});
+	feature_group.addLayer(exp_5BFredericksburgRdBoerneJSON);
+	layerOrder[layerOrder.length] = exp_5BFredericksburgRdBoerneJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_5BFredericksburgRdBoerneJSON.addTo(map);
+							
+	function pop_5AKerrvilleRRBoerne(feature, layer) {						
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_5AKerrvilleRRBoerneJSON = new L.geoJson(exp_5AKerrvilleRRBoerne,{
+		onEachFeature: pop_5AKerrvilleRRBoerne,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_5AKerrvilleRRBoerneJSON);
+	layerOrder[layerOrder.length] = exp_5AKerrvilleRRBoerneJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_5AKerrvilleRRBoerneJSON.addTo(map);
+
+	function pop_4BMedicalCenterBulverde(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_4BMedicalCenterBulverdeJSON = new L.geoJson(exp_4BMedicalCenterBulverde,{
+		onEachFeature: pop_4BMedicalCenterBulverde,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_4BMedicalCenterBulverdeJSON);
+	layerOrder[layerOrder.length] = exp_4BMedicalCenterBulverdeJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_4BMedicalCenterBulverdeJSON.addTo(map);
+							
+	function pop_4ASanPedroUS281(feature, layer) {						
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+
+	}
+						
+	var exp_4ASanPedroUS281JSON = new L.geoJson(exp_4ASanPedroUS281,{
+		onEachFeature: pop_4ASanPedroUS281,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_4ASanPedroUS281JSON);
+	layerOrder[layerOrder.length] = exp_4ASanPedroUS281JSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_4ASanPedroUS281JSON.addTo(map);
+	
+	function pop_3ECommerceSeguin(feature, layer) {
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_3ECommerceSeguinJSON = new L.geoJson(exp_3ECommerceSeguin,{
+		onEachFeature: pop_3ECommerceSeguin,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_3ECommerceSeguinJSON);
+	layerOrder[layerOrder.length] = exp_3ECommerceSeguinJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_3ECommerceSeguinJSON.addTo(map);
+
+	function pop_2BRockportRRWilsonCounty(feature, layer) {								
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_2BRockportRRWilsonCountyJSON = new L.geoJson(exp_2BRockportRRWilsonCounty,{
+		onEachFeature: pop_2BRockportRRWilsonCounty,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_2BRockportRRWilsonCountyJSON);
+	layerOrder[layerOrder.length] = exp_2BRockportRRWilsonCountyJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_2BRockportRRWilsonCountyJSON.addTo(map);
+	function pop_2APleasantonAtascosaCounty(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_2APleasantonAtascosaCountyJSON = new L.geoJson(exp_2APleasantonAtascosaCounty,{
+		onEachFeature: pop_2APleasantonAtascosaCounty,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_2APleasantonAtascosaCountyJSON);
+	layerOrder[layerOrder.length] = exp_2APleasantonAtascosaCountyJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_2APleasantonAtascosaCountyJSON.addTo(map);
+	
+	function pop_1CastrovilleNewBraunfels(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+
+
+	}
+						
+	var exp_1CastrovilleNewBraunfelsJSON = new L.geoJson(exp_1CastrovilleNewBraunfels,{
+		onEachFeature: pop_1CastrovilleNewBraunfels,
+		style: function (feature) {
+			return {weight: feature.properties.radius_qgis2leaf,
+					color: feature.properties.color_qgis2leaf,
+					weight: 5,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: feature.properties.transp_qgis2leaf};
+			}
+		});
+	feature_group.addLayer(exp_1CastrovilleNewBraunfelsJSON);
+	layerOrder[layerOrder.length] = exp_1CastrovilleNewBraunfelsJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_1CastrovilleNewBraunfelsJSON.addTo(map);
+	
+	function pop_QTRMileStationBuffer(feature, layer) {						
+		var popupContent = '1/4 Mile Buffer';
+		layer.bindPopup(popupContent);
+	}
+						
+	var exp_QTRMileStationBufferJSON = new L.geoJson(exp_QTRMileStationBuffer,{
+		onEachFeature: pop_QTRMileStationBuffer,
+		style: function (feature) {
+			return {color: feature.properties.border_color_qgis2leaf,
+					fillColor: feature.properties.color_qgis2leaf,
+					weight: feature.properties.radius_qgis2leaf,
+					opacity: feature.properties.transp_qgis2leaf,
+					fillOpacity: '0.2'};
+			}
+		});
+	feature_group.addLayer(exp_QTRMileStationBufferJSON);
+	layerOrder[layerOrder.length] = exp_QTRMileStationBufferJSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		map.removeLayer(layerOrder[index]);map.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_QTRMileStationBufferJSON.addTo(map);
+							
+	function pop_2040StationSelection312015(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+
+
+	}
+						
+	var exp_2040StationSelection312015JSON = new L.geoJson(exp_2040StationSelection312015,{
+		onEachFeature: pop_2040StationSelection312015,
+		pointToLayer: function (feature, latlng) {  
+			return L.circleMarker(latlng, {
+				radius: feature.properties.radius_qgis2leaf,
+				fillColor:'#73B2FF',
+				color: feature.properties.borderColor_qgis2leaf,
+				weight: 1,
+				opacity: feature.properties.transp_qgis2leaf,
+				fillOpacity: feature.properties.transp_qgis2leaf
+				}).bindLabel(feature.properties.Name, {noHide: true})
+			}
+		});
+					feature_group.addLayer(exp_2040StationSelection312015JSON);
+
+	layerOrder[layerOrder.length] = exp_2040StationSelection312015JSON;
+	for (index = 0; index < layerOrder.length; index++) {
+		feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+	}
+	
+	//add comment sign to hide this layer on the map in the initial view.
+	exp_2040StationSelection312015JSON.addTo(map);
+	
+	function pop_StationLineDistance312015(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['description']));
+		layer.bindPopup(popupContent);
+	}
+						
+				var exp_StationLineDistance312015JSON = new L.geoJson(exp_StationLineDistance312015,{
+					onEachFeature: pop_StationLineDistance312015,
+					style: function (feature) {
+						return {weight: feature.properties.radius_qgis2leaf,
+								color: feature.properties.color_qgis2leaf,
+								opacity: feature.properties.transp_qgis2leaf,
+								fillOpacity: feature.properties.transp_qgis2leaf};
+						}
+					});
+				feature_group.addLayer(exp_StationLineDistance312015JSON);
+				layerOrder[layerOrder.length] = exp_StationLineDistance312015JSON;
+				for (index = 0; index < layerOrder.length; index++) {
+					feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+				}
+				
+						//add comment sign to hide this layer on the map in the initial view.
+						exp_StationLineDistance312015JSON.addTo(map);
+	
+	function pop_DistanceLabelLayershp(feature, layer) {
+										
+		var popupContent = Autolinker.link(String(feature.properties['descriptio']));
+		layer.bindPopup(popupContent);
+
+	}
+						
+				var exp_DistanceLabelLayershpJSON = new L.geoJson(exp_DistanceLabelLayershp,{
+					onEachFeature: pop_DistanceLabelLayershp,
+					pointToLayer: function (feature, latlng) {  
+						return L.circleMarker(latlng, {
+							radius: 0,
+							fillColor: feature.properties.color_qgis2leaf,
+							color: feature.properties.borderColor_qgis2leaf,
+							weight: 0,
+							opacity: feature.properties.transp_qgis2leaf,
+							fillOpacity: feature.properties.transp_qgis2leaf
+							}).bindLabel(feature.properties.Name, {noHide: true})
+						}
+					});
+								feature_group.addLayer(exp_DistanceLabelLayershpJSON);
+
+				layerOrder[layerOrder.length] = exp_DistanceLabelLayershpJSON;
+				for (index = 0; index < layerOrder.length; index++) {
+					feature_group.removeLayer(layerOrder[index]);feature_group.addLayer(layerOrder[index]);
+				}
+				
+						//add comment sign to hide this layer on the map in the initial view.
+						exp_DistanceLabelLayershpJSON.addTo(map);
+		var title = new L.Control();
+		title.onAdd = function (map) {
+			this._div = L.DomUtil.create('div', 'info'); // create a div with a class "info"
+			this.update();
+			return this._div;
+	    };
+	    title.update = function () {
+			this._div.innerHTML = '<h2>VIA Station Viewer</h2>Analysis of Possible Stations'
+		};
+		title.addTo(map);
+	var baseMaps = {
+		'OSM Standard': basemap_0,
+		'OSM HOT': basemap_1,
+		'MapQuestOpen Aerial': basemap_2};
+	L.control.layers(baseMaps,{"Station Distance Labels": exp_DistanceLabelLayershpJSON,"Station Distances": exp_StationLineDistance312015JSON,"2040 Station Selections": exp_2040StationSelection312015JSON,"1/4mi Station Buffers": exp_QTRMileStationBufferJSON,"1 - Castroville / New Braunfels": exp_1CastrovilleNewBraunfelsJSON,"2A Pleasanton / Atascosa County": exp_2APleasantonAtascosaCountyJSON,"2B Rockport RR / Wilson County": exp_2BRockportRRWilsonCountyJSON,"3E Commerce / Seguin": exp_3ECommerceSeguinJSON,"4A San Pedro / US281": exp_4ASanPedroUS281JSON,"4B Medical Center / Bulverde": exp_4BMedicalCenterBulverdeJSON,"5A Kerrville RR / Boerne": exp_5AKerrvilleRRBoerneJSON,"5B Fredericksburg Rd / Boerne": exp_5BFredericksburgRdBoerneJSON,"6 Alamo Ranch / New Braunfels": exp_6AlamoRanchNewBraunfelsJSON,"7 Inner City Rail Loop": exp_7InnerCityRailLoopJSON},{collapsed:false}).addTo(map);
+		function updateOpacity(value) {
+	}
+	L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
+	</script>
+</body>
+</html>
+	
