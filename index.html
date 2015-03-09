@@ -427,7 +427,7 @@
 		           d > 2500  ? '#bdc9e1' :
 		                       '#f1eef6';
 		}
-		exp_QTRMileTAZsJSON_pop2040.addTo(map);
+		// exp_QTRMileTAZsJSON_pop2040.addTo(map);
 		
 		var exp_QTRMileTAZsJSON_emp2040 = new L.geoJson(exp_QTRMileTAZs,{
 			onEachFeature: pop_empQTRMileTAZs,
@@ -511,6 +511,74 @@
 			},
 			{collapsed:false}
 		).addTo(map);
+
+		//legend section
+		var legend_A = L.control({position: 'bottomleft'});
+		legend_A.onAdd = function (map) {
+			var div = L.DomUtil.create('div', 'info legend');
+			div.innerHTML = "<h3>2040 Population</h3>" + 
+							"<table><tr><td><i style='background:#0570b0'></i> 10,000 +</td></tr>"+ 
+							"<tr><td><i style='background:#74a9cf'></i> 5,000 - 9,999</td></tr>"+
+							"<tr><td><i style='background:#bdc9e1'></i> 2,500 - 4,999</td></tr>"+
+							"<tr><td><i style='background:#f1eef6'></i> 0 - 2,499</td></tr>"+
+							"</table>";
+ 			return div;
+		};
+		// legend_A.addTo(map);
+
+		//legend section
+		var legend_B = L.control({position: 'bottomleft'});
+		legend_B.onAdd = function (map) {
+			var div = L.DomUtil.create('div', 'info legend');
+			div.innerHTML = "<h3>2040 Employment</h3>" + 
+							"<table><tr><td><i style='background:#cc4c02'></i> 10,000 +</td></tr>"+ 
+							"<tr><td><i style='background:#fe9929'></i> 5,000 - 9,999</td></tr>"+
+							"<tr><td><i style='background:#fed98e'></i> 2,500 - 4,999</td></tr>"+
+							"<tr><td><i style='background:#ffffd4'></i> 0 - 2,499</td></tr>"+
+							"</table>";
+ 			return div;
+		};
+		// legend_B.addTo(map);
+
+		//legend section
+		var legend_C = L.control({position: 'bottomleft'});
+		legend_C.onAdd = function (map) {
+			var div = L.DomUtil.create('div', 'info legend');
+			div.innerHTML = "<h3>2014 Median HH Income</h3>" + 
+							"<table><tr><td><i style='background:#238443'></i> $87,000 +</td></tr>"+ 
+							"<tr><td><i style='background:#78c679'></i> $50,000 - $86,999</td></tr>"+
+							"<tr><td><i style='background:#c2e699'></i> $25,000 - $49,999</td></tr>"+
+							"<tr><td><i style='background:#ffffcc'></i> $0 - $24,499</td></tr>"+
+							"</table>";
+ 			return div;
+		};
+		// legend_C.addTo(map);
+
+
+		map.on('overlayadd', function (eventLayer) {
+			console.log(eventLayer.name);
+		    if (eventLayer.name === '2040 Population') {
+		        legend_A.addTo(map);
+		    }
+		    else if  (eventLayer.name === '2040 Employment') {
+		        legend_B.addTo(map);
+		    }
+		    else if  (eventLayer.name === '2014 HH Income') {
+		        legend_C.addTo(map);
+		    }
+		  });
+		map.on('overlayremove', function (eventLayer) {
+			console.log(eventLayer.name);
+		    if (eventLayer.name === '2040 Population') {
+		        map.removeControl(legend_A);
+		    }
+		    else if  (eventLayer.name === '2040 Employment') {
+		        map.removeControl(legend_B);
+		    }
+		    else if  (eventLayer.name === '2014 HH Income') {
+		        map.removeControl(legend_C);
+		    }
+		  });
 
 		L.control.scale({options: {position: 'bottomleft',maxWidth: 100,metric: true,imperial: false,updateWhenIdle: false}}).addTo(map);
 	</script>

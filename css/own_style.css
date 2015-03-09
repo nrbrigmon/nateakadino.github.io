@@ -37,7 +37,23 @@
 	.leaflet-container {
     	background: #FFF;
 	}
+	.leaflet-left .legend {
+    width: 200px;
+	}
 
+	.legend i {
+	    width: 18px;
+	    height: 18px;
+	    float: left;
+	    margin-right: 8px;
+	    opacity: 0.7;
+	    border: 1px solid #111111;
+	}
+	.legend h3{
+		margin-top: 6px;
+		text-align: center;
+		margin-bottom: 6px;
+	}
 	.civicLogo{
 		height:37px;
 		width: auto;
