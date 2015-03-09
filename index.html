@@ -497,21 +497,22 @@
 			"Station Distance Labels": exp_DistanceLabelLayershpJSON,
 			"Station Distances": exp_StationLineDistance312015JSON,
 			"2040 Station Selections": exp_2040StationSelection312015JSON,
-			"1/4 mi Station Buffers": exp_QTRMileStationBufferJSON,
-			"1  - Castroville / New Braunfels": exp_1CastrovilleNewBraunfelsJSON,
-			"2A - Pleasanton / Atascosa County": exp_2APleasantonAtascosaCountyJSON,
-			"2B - Rockport RR / Wilson County": exp_2BRockportRRWilsonCountyJSON,
-			"3E - Commerce / Seguin": exp_3ECommerceSeguinJSON,
-			"4A - San Pedro / US281": exp_4ASanPedroUS281JSON,
-			"4B - Medical Center / Bulverde": exp_4BMedicalCenterBulverdeJSON,
-			"5A - Kerrville RR / Boerne": exp_5AKerrvilleRRBoerneJSON,
-			"5B - Fredericksburg Rd / Boerne": exp_5BFredericksburgRdBoerneJSON,
-			"6  - Alamo Ranch / New Braunfels": exp_6AlamoRanchNewBraunfelsJSON,
-			"7  - Inner City Rail Loop": exp_7InnerCityRailLoopJSON
+			"1/4 Mile Station Buffers": exp_QTRMileStationBufferJSON,
+			"1_: Castroville / New Braunfels": exp_1CastrovilleNewBraunfelsJSON,
+			"2A: Pleasanton / Atascosa County": exp_2APleasantonAtascosaCountyJSON,
+			"2B: Rockport RR / Wilson County": exp_2BRockportRRWilsonCountyJSON,
+			"3E: Commerce / Seguin": exp_3ECommerceSeguinJSON,
+			"4A: San Pedro / US281": exp_4ASanPedroUS281JSON,
+			"4B: Medical Center / Bulverde": exp_4BMedicalCenterBulverdeJSON,
+			"5A: Kerrville RR / Boerne": exp_5AKerrvilleRRBoerneJSON,
+			"5B: Fredericksburg Rd / Boerne": exp_5BFredericksburgRdBoerneJSON,
+			"6_: Alamo Ranch / New Braunfels": exp_6AlamoRanchNewBraunfelsJSON,
+			"7_: Inner City Rail Loop": exp_7InnerCityRailLoopJSON
 			},
 			{collapsed:false}
 		).addTo(map);
 
+		////////////////////////////
 		//legend section
 		var legend_A = L.control({position: 'bottomleft'});
 		legend_A.onAdd = function (map) {
@@ -524,9 +525,6 @@
 							"</table>";
  			return div;
 		};
-		// legend_A.addTo(map);
-
-		//legend section
 		var legend_B = L.control({position: 'bottomleft'});
 		legend_B.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info legend');
@@ -538,9 +536,6 @@
 							"</table>";
  			return div;
 		};
-		// legend_B.addTo(map);
-
-		//legend section
 		var legend_C = L.control({position: 'bottomleft'});
 		legend_C.onAdd = function (map) {
 			var div = L.DomUtil.create('div', 'info legend');
@@ -552,7 +547,6 @@
 							"</table>";
  			return div;
 		};
-		// legend_C.addTo(map);
 
 
 		map.on('overlayadd', function (eventLayer) {
