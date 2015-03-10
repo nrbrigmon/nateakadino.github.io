@@ -33,6 +33,9 @@
 	    margin: 0 0 5px;
 	    color: #777;
 	}
+	.leaflet-popup{
+		z-index: 99;
+	}
 	
 	.leaflet-container {
     	background: #FFF;
